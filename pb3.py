@@ -42,12 +42,6 @@ class Rectangle :
         self.draw()
 
     def intersect(self, rec) :
-        x = 0
-        
-        if self.x < rec.x :
-            x = rec.x
-        else :
-            x = self.x
 
         x1_overlap = max(self.x, rec.x)
         y1_overlap = min(self.y, rec.y)
@@ -64,21 +58,21 @@ class Rectangle :
 
 
 
-# rec1 = Rectangle(0,0, 50, 200)
-# rec1.draw()
-
-# rec2 = Rectangle(100,100, 200, 50, "red")
-# rec2.draw()
-
-# rec2.move(-100,-100)
-
-rec1 = Rectangle(0,0, 100, 100)
+rec1 = Rectangle(0,0, 50, 200)
 rec1.draw()
 
-rec2 = Rectangle(100,100, 100, 100, "red")
+rec2 = Rectangle(100,100, 200, 50, "red")
 rec2.draw()
 
-rec2.move(30,-30)
+rec2.move(-100,-100)
+
+# rec1 = Rectangle(0,0, 100, 100)
+# rec1.draw()
+
+# rec2 = Rectangle(100,100, 100, 100, "red")
+# rec2.draw()
+
+# rec2.move(30,-30)
 
 new_rec = rec1.intersect(rec2)
 new_rec.draw()
