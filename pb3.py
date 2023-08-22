@@ -42,26 +42,43 @@ class Rectangle :
         self.draw()
 
     def intersect(self, rec) :
+        x = 0
+        
+        if self.x < rec.x :
+            x = rec.x
+        else :
+            x = self.x
 
-        inter_x = self.x + (self.width / 2)
-        inter_y  = self.y - (self.height / 2)
-
-        rec.x = inter_x
-        rec.y = inter_y
-        rec.move(inter_x, inter_y)
-
-        new_rec_width = (self.x + self.width) - inter_x
-        new_rec_height=  self.height /2
-        print(new_rec_height)
-        return Rectangle(inter_x, inter_y, new_rec_width, new_rec_height, "green")
+        x1_overlap = max(self.x, rec.x)
+        y1_overlap = min(self.y, rec.y)
 
 
+        x2_overlap = min(self.x + self.width, rec.x + rec.width)
 
-rec1 = Rectangle(10,10, 100, 100)
+        y2_overlap = max( self.y - self.height, rec.y - rec.height)
+
+        width_overlap = x2_overlap - x1_overlap
+        height_overlap =   y2_overlap - y1_overlap
+        
+        return Rectangle( x1_overlap, y1_overlap, width_overlap, abs(height_overlap), "green")
+
+
+
+# rec1 = Rectangle(0,0, 50, 200)
+# rec1.draw()
+
+# rec2 = Rectangle(100,100, 200, 50, "red")
+# rec2.draw()
+
+# rec2.move(-100,-100)
+
+rec1 = Rectangle(0,0, 100, 100)
 rec1.draw()
 
 rec2 = Rectangle(100,100, 100, 100, "red")
 rec2.draw()
+
+rec2.move(30,-30)
 
 new_rec = rec1.intersect(rec2)
 new_rec.draw()
